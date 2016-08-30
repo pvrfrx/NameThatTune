@@ -55,7 +55,7 @@
             // 
             // btnSettings
             // 
-            this.btnSettings.Location = new System.Drawing.Point(495, 238);
+            this.btnSettings.Location = new System.Drawing.Point(495, 235);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(250, 58);
             this.btnSettings.TabIndex = 2;
@@ -76,6 +76,7 @@
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(800, 600);
             this.Name = "fMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Угадай мелодию";
             this.ResumeLayout(false);
 
