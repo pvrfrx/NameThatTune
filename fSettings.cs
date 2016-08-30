@@ -49,17 +49,18 @@ namespace NameThatTune
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            lbListMusic.Items.Clear();
             this.Close();
         }
 
-        private void lbListMusic_VisibleChanged(object sender, EventArgs e)
+        private void fSettings_FormClosing(object sender, FormClosingEventArgs e)
         {
             lbListMusic.Items.Clear();
-            foreach (string item in NameThatTune.listMusic)
-            {
-                lbListMusic.Items.Add(item);
-            }
+        }
+
+        private void fSettings_Shown(object sender, EventArgs e)
+        {
+            lbListMusic.Items.Clear();
+            lbListMusic.Items.AddRange(NameThatTune.listMusic.ToArray());
         }
     }
 }

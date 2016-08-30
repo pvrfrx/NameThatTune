@@ -44,7 +44,7 @@
             this.lbListMusic.Name = "lbListMusic";
             this.lbListMusic.Size = new System.Drawing.Size(759, 342);
             this.lbListMusic.TabIndex = 0;
-            this.lbListMusic.VisibleChanged += new System.EventHandler(this.lbListMusic_VisibleChanged);
+            //this.lbListMusic.VisibleChanged += new System.EventHandler(this.lbListMusic_VisibleChanged);
             // 
             // btnLoadMusic
             // 
@@ -112,6 +112,8 @@
             this.Name = "fSettings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Настройки";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fSettings_FormClosing);
+            this.Shown += new System.EventHandler(this.fSettings_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

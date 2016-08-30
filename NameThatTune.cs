@@ -9,5 +9,13 @@ namespace NameThatTune
     static class NameThatTune
     {
         static public List<string> listMusic = new List<string>();
+        static public int durationGame = 60;
+        static public int durationTune = 10;
+        static public bool randomStartTune = false;
+        static public string lastPath = "";
+        static public bool allDirection = false;
+
+
+
     }
 }

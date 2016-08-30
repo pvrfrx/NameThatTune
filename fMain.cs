@@ -14,6 +14,7 @@ namespace NameThatTune
     {
         
         fSettings fs = new fSettings();
+        fGame fg = new fGame();
         public fMain()
         {
             InitializeComponent();
@@ -28,6 +29,12 @@ namespace NameThatTune
         private void btnSettings_Click(object sender, EventArgs e)
         {
             fs.ShowDialog();
+        }
+
+        private void btnPlay_Click(object sender, EventArgs e)
+        {
+            if (NameThatTune.listMusic.Count==0) MessageBox.Show("Не загружено ни одной песни");
+            else fg.ShowDialog();
         }
     }
 }
