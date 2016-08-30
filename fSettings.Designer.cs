@@ -33,6 +33,8 @@
             this.btnLoadMusic = new System.Windows.Forms.Button();
             this.btnClearMusic = new System.Windows.Forms.Button();
             this.cbAllFolder = new System.Windows.Forms.CheckBox();
+            this.btnOK = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbListMusic
@@ -42,6 +44,7 @@
             this.lbListMusic.Name = "lbListMusic";
             this.lbListMusic.Size = new System.Drawing.Size(759, 342);
             this.lbListMusic.TabIndex = 0;
+            this.lbListMusic.VisibleChanged += new System.EventHandler(this.lbListMusic_VisibleChanged);
             // 
             // btnLoadMusic
             // 
@@ -73,11 +76,33 @@
             this.cbAllFolder.Text = "Использовать вложенные папки";
             this.cbAllFolder.UseVisualStyleBackColor = true;
             // 
+            // btnOK
+            // 
+            this.btnOK.Location = new System.Drawing.Point(553, 522);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(106, 23);
+            this.btnOK.TabIndex = 4;
+            this.btnOK.Text = "OK";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(666, 522);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(106, 23);
+            this.btnCancel.TabIndex = 5;
+            this.btnCancel.Text = "Отмена";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // fSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnOK);
             this.Controls.Add(this.cbAllFolder);
             this.Controls.Add(this.btnClearMusic);
             this.Controls.Add(this.btnLoadMusic);
@@ -98,5 +123,7 @@
         private System.Windows.Forms.Button btnLoadMusic;
         private System.Windows.Forms.Button btnClearMusic;
         private System.Windows.Forms.CheckBox cbAllFolder;
+        private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

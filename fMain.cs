@@ -12,10 +12,12 @@ namespace NameThatTune
 {
     public partial class fMain : Form
     {
+        
         fSettings fs = new fSettings();
         public fMain()
         {
             InitializeComponent();
+
         }
 
         private void btnExit_Click(object sender, EventArgs e)
