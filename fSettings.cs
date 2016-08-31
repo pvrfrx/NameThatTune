@@ -33,7 +33,6 @@ namespace NameThatTune
                 lbListMusic.Items.AddRange(Directory.GetFiles(fbd.SelectedPath, "*.mp3", 
                     cbAllFolder.Checked ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));
             }
-
         }
 
         private void btnOK_Click(object sender, EventArgs e)

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace NameThatTune
 {
@@ -18,7 +19,6 @@ namespace NameThatTune
         public fMain()
         {
             InitializeComponent();
-
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -35,6 +35,22 @@ namespace NameThatTune
         {
             if (NameThatTune.listMusic.Count==0) MessageBox.Show("Не загружено ни одной песни");
             else fg.ShowDialog();
+        }
+
+        private void fMain_Shown(object sender, EventArgs e)
+        {
+            NameThatTune.listMusic.Clear();
+            try
+            {
+                NameThatTune.listMusic.AddRange(Directory.GetFiles(
+                    NameThatTune.ReadSettings("Last Path").ToString(), "*.mp3", 
+                    Convert.ToBoolean(NameThatTune.ReadSettings("All Direction")) ? 
+                    SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));
+            }
+            catch (Exception)
+            {
+                return;
+            }
         }
     }
 }

@@ -3,19 +3,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Win32;
+using System.IO;
 
 namespace NameThatTune
 {
     static class NameThatTune
     {
         static public List<string> listMusic = new List<string>();
-        static public int durationGame = 60;
-        static public int durationTune = 10;
-        static public bool randomStartTune = false;
-        static public string lastPath = "";
-        static public bool allDirection = false;
 
+        static string regKeyName = "Software\\PavelR\\NameThatTune";
+        public static void WriteSettings(string nameRegister, object valueRegister)
+        {
+            try
+            {
+                Registry.CurrentUser.CreateSubKey(regKeyName).SetValue(nameRegister, valueRegister);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
-
+        public static object ReadSettings(string nameRegister)
+        { 
+            try
+            {
+                return Registry.CurrentUser.OpenSubKey(regKeyName).GetValue(nameRegister);
+            }
+            catch(Exception)
+            {
+                return null;
+            }
+        }
     }
 }
