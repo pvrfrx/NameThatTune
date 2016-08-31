@@ -39,12 +39,12 @@ namespace NameThatTune
 
         private void fMain_Shown(object sender, EventArgs e)
         {
-            NameThatTune.listMusic.Clear();
+            NameThatTune.ReadSettings();
             try
             {
                 NameThatTune.listMusic.AddRange(Directory.GetFiles(
-                    NameThatTune.ReadSettings("Last Path").ToString(), "*.mp3", 
-                    Convert.ToBoolean(NameThatTune.ReadSettings("All Direction")) ? 
+                    NameThatTune.lastPath, "*.mp3", 
+                    Convert.ToBoolean(NameThatTune.allDirection) ? 
                     SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));
             }
             catch (Exception)

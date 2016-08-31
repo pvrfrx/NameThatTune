@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using NameThatTune;
 
 namespace NameThatTune
 {
@@ -23,7 +24,7 @@ namespace NameThatTune
         {
             lbListMusic.Items.Clear();
         }
-        private string tempSelectedPath;
+
         private void btnLoadMusic_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
@@ -32,7 +33,7 @@ namespace NameThatTune
                 lbListMusic.Items.Clear();
                 lbListMusic.Items.AddRange(Directory.GetFiles(fbd.SelectedPath, "*.mp3", 
                     cbAllFolder.Checked ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));
-                tempSelectedPath=fbd.SelectedPath;
+                NameThatTune.lastPath = fbd.SelectedPath;
             }
         }
 
@@ -45,11 +46,13 @@ namespace NameThatTune
                 NameThatTune.listMusic.Add(item);
             }
             lbListMusic.Items.Clear();
-            NameThatTune.WriteSettings("Game Duration", cbGameDuration.Text);
-            NameThatTune.WriteSettings("Game Tune", cbTuneDuration.Text);
-            NameThatTune.WriteSettings("Random Start", cbRandomStart.Checked);
-            NameThatTune.WriteSettings("All Direction", cbAllFolder.Checked);
-            if (tempSelectedPath!=null) NameThatTune.WriteSettings("Last Path", tempSelectedPath);
+
+            NameThatTune.gameDuration =Convert.ToInt32( cbGameDuration.Text);
+            NameThatTune.tuneDuration =Convert.ToInt32(cbTuneDuration.Text);
+            NameThatTune.randomStart = Convert.ToBoolean(cbRandomStart.Checked);
+            NameThatTune.repeatTune = Convert.ToBoolean(cbRepeat.Checked);
+            NameThatTune.allDirection = Convert.ToBoolean(cbAllFolder.Checked);
+            NameThatTune.WriteSettings();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -66,9 +69,11 @@ namespace NameThatTune
         {
             try
             {
-                cbGameDuration.Text = NameThatTune.ReadSettings("Game Duration").ToString();
-                cbTuneDuration.Text = NameThatTune.ReadSettings("Game Tune").ToString();
-                cbRandomStart.Checked = Convert.ToBoolean(NameThatTune.ReadSettings("Random Start"));
+                cbGameDuration.Text = NameThatTune.gameDuration.ToString();
+                cbTuneDuration.Text = NameThatTune.tuneDuration.ToString();
+                cbRandomStart.Checked = NameThatTune.randomStart;
+                cbRepeat.Checked = NameThatTune.repeatTune;
+                cbAllFolder.Checked = NameThatTune.allDirection;
                 lbListMusic.Items.Clear();
                 lbListMusic.Items.AddRange(NameThatTune.listMusic.ToArray());
             }

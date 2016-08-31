@@ -40,6 +40,7 @@
             this.cbRandomStart = new System.Windows.Forms.CheckBox();
             this.cbTuneDuration = new System.Windows.Forms.ComboBox();
             this.cbGameDuration = new System.Windows.Forms.ComboBox();
+            this.cbRepeat = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // lbListMusic
@@ -138,7 +139,7 @@
             "20"});
             this.cbTuneDuration.Location = new System.Drawing.Point(202, 438);
             this.cbTuneDuration.Name = "cbTuneDuration";
-            this.cbTuneDuration.Size = new System.Drawing.Size(30, 21);
+            this.cbTuneDuration.Size = new System.Drawing.Size(47, 21);
             this.cbTuneDuration.TabIndex = 10;
             // 
             // cbGameDuration
@@ -150,14 +151,25 @@
             "120"});
             this.cbGameDuration.Location = new System.Drawing.Point(202, 411);
             this.cbGameDuration.Name = "cbGameDuration";
-            this.cbGameDuration.Size = new System.Drawing.Size(30, 21);
+            this.cbGameDuration.Size = new System.Drawing.Size(47, 21);
             this.cbGameDuration.TabIndex = 11;
+            // 
+            // cbRepeat
+            // 
+            this.cbRepeat.AutoSize = true;
+            this.cbRepeat.Location = new System.Drawing.Point(239, 379);
+            this.cbRepeat.Name = "cbRepeat";
+            this.cbRepeat.Size = new System.Drawing.Size(239, 17);
+            this.cbRepeat.TabIndex = 12;
+            this.cbRepeat.Text = "Повторять мелодии, если все прозвучали";
+            this.cbRepeat.UseVisualStyleBackColor = true;
             // 
             // fSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.cbRepeat);
             this.Controls.Add(this.cbGameDuration);
             this.Controls.Add(this.cbTuneDuration);
             this.Controls.Add(this.cbRandomStart);
@@ -194,5 +206,6 @@
         private System.Windows.Forms.CheckBox cbRandomStart;
         private System.Windows.Forms.ComboBox cbTuneDuration;
         private System.Windows.Forms.ComboBox cbGameDuration;
+        private System.Windows.Forms.CheckBox cbRepeat;
     }
 }
