@@ -32,6 +32,7 @@ namespace NameThatTune
                 lbListMusic.Items.Clear();
                 lbListMusic.Items.AddRange(Directory.GetFiles(fbd.SelectedPath, "*.mp3", 
                     cbAllFolder.Checked ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));
+                NameThatTune.WriteSettings("Last Path", fbd.SelectedPath);
             }
         }
 
@@ -44,6 +45,10 @@ namespace NameThatTune
                 NameThatTune.listMusic.Add(item);
             }
             lbListMusic.Items.Clear();
+            NameThatTune.WriteSettings("Game Duration", cbGameDuration.Text);
+            NameThatTune.WriteSettings("Game Tune", cbTuneDuration.Text);
+            NameThatTune.WriteSettings("Random Start", cbRandomStart.Checked);
+            NameThatTune.WriteSettings("All Direction", cbAllFolder.Checked);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -58,8 +63,18 @@ namespace NameThatTune
 
         private void fSettings_Shown(object sender, EventArgs e)
         {
-            lbListMusic.Items.Clear();
-            lbListMusic.Items.AddRange(NameThatTune.listMusic.ToArray());
+            try
+            {
+                cbGameDuration.Text = NameThatTune.ReadSettings("Game Duration").ToString();
+                cbTuneDuration.Text = NameThatTune.ReadSettings("Game Tune").ToString();
+                cbRandomStart.Checked = Convert.ToBoolean(NameThatTune.ReadSettings("Random Start"));
+                lbListMusic.Items.Clear();
+                lbListMusic.Items.AddRange(NameThatTune.listMusic.ToArray());
+            }
+            catch (NullReferenceException)
+            {
+                return;
+            }
         }
     }
 }

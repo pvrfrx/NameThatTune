@@ -35,6 +35,11 @@
             this.cbAllFolder = new System.Windows.Forms.CheckBox();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cbRandomStart = new System.Windows.Forms.CheckBox();
+            this.cbTuneDuration = new System.Windows.Forms.ComboBox();
+            this.cbGameDuration = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lbListMusic
@@ -44,7 +49,6 @@
             this.lbListMusic.Name = "lbListMusic";
             this.lbListMusic.Size = new System.Drawing.Size(759, 342);
             this.lbListMusic.TabIndex = 0;
-            //this.lbListMusic.VisibleChanged += new System.EventHandler(this.lbListMusic_VisibleChanged);
             // 
             // btnLoadMusic
             // 
@@ -96,11 +100,69 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(20, 414);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(139, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Продолжительность игры";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(20, 441);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(158, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Продолжительность мелодии";
+            // 
+            // cbRandomStart
+            // 
+            this.cbRandomStart.AutoSize = true;
+            this.cbRandomStart.Location = new System.Drawing.Point(23, 468);
+            this.cbRandomStart.Name = "cbRandomStart";
+            this.cbRandomStart.Size = new System.Drawing.Size(149, 17);
+            this.cbRandomStart.TabIndex = 9;
+            this.cbRandomStart.Text = "Старт мелодии с начала";
+            this.cbRandomStart.UseVisualStyleBackColor = true;
+            // 
+            // cbTuneDuration
+            // 
+            this.cbTuneDuration.FormattingEnabled = true;
+            this.cbTuneDuration.Items.AddRange(new object[] {
+            "5",
+            "10",
+            "15",
+            "20"});
+            this.cbTuneDuration.Location = new System.Drawing.Point(202, 438);
+            this.cbTuneDuration.Name = "cbTuneDuration";
+            this.cbTuneDuration.Size = new System.Drawing.Size(30, 21);
+            this.cbTuneDuration.TabIndex = 10;
+            // 
+            // cbGameDuration
+            // 
+            this.cbGameDuration.FormattingEnabled = true;
+            this.cbGameDuration.Items.AddRange(new object[] {
+            "60",
+            "90",
+            "120"});
+            this.cbGameDuration.Location = new System.Drawing.Point(202, 411);
+            this.cbGameDuration.Name = "cbGameDuration";
+            this.cbGameDuration.Size = new System.Drawing.Size(30, 21);
+            this.cbGameDuration.TabIndex = 11;
+            // 
             // fSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.cbGameDuration);
+            this.Controls.Add(this.cbTuneDuration);
+            this.Controls.Add(this.cbRandomStart);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.cbAllFolder);
@@ -127,5 +189,10 @@
         private System.Windows.Forms.CheckBox cbAllFolder;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox cbRandomStart;
+        private System.Windows.Forms.ComboBox cbTuneDuration;
+        private System.Windows.Forms.ComboBox cbGameDuration;
     }
 }

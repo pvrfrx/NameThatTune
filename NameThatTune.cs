@@ -21,7 +21,7 @@ namespace NameThatTune
             }
             catch (Exception)
             {
-                throw;
+                return;
             }
         }
 
