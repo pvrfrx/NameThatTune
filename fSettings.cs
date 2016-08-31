@@ -23,7 +23,7 @@ namespace NameThatTune
         {
             lbListMusic.Items.Clear();
         }
-
+        private string tempSelectedPath;
         private void btnLoadMusic_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
@@ -32,7 +32,7 @@ namespace NameThatTune
                 lbListMusic.Items.Clear();
                 lbListMusic.Items.AddRange(Directory.GetFiles(fbd.SelectedPath, "*.mp3", 
                     cbAllFolder.Checked ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));
-                NameThatTune.WriteSettings("Last Path", fbd.SelectedPath);
+                tempSelectedPath=fbd.SelectedPath;
             }
         }
 
@@ -49,6 +49,7 @@ namespace NameThatTune
             NameThatTune.WriteSettings("Game Tune", cbTuneDuration.Text);
             NameThatTune.WriteSettings("Random Start", cbRandomStart.Checked);
             NameThatTune.WriteSettings("All Direction", cbAllFolder.Checked);
+            if (tempSelectedPath!=null) NameThatTune.WriteSettings("Last Path", tempSelectedPath);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
