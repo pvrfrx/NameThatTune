@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="fAnswer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fAnswer.Designer.cs">
+      <DependentUpon>fAnswer.cs</DependentUpon>
+    </Compile>
     <Compile Include="fGame.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +73,9 @@
     <Compile Include="NameThatTune.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="fAnswer.resx">
+      <DependentUpon>fAnswer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="fGame.resx">
       <DependentUpon>fGame.cs</DependentUpon>
     </EmbeddedResource>

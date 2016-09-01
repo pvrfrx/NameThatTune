@@ -16,7 +16,7 @@ namespace NameThatTune
         {
             InitializeComponent();
         }
-        
+        Random random = new Random();
         private void btnStart_Click(object sender, EventArgs e)
         {
             progressBar1.Value = 0;
@@ -27,7 +27,6 @@ namespace NameThatTune
         List<int> listTunePlayed = new List<int>(); //список песен, которые прозвучали во время игры.
         private void NewTunePlay()
         {
-            Random random = new Random();
             int i = 0;
             while (true)
             {
@@ -97,19 +96,26 @@ namespace NameThatTune
 
         private void fGame_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyData.ToString().Equals(NameThatTune.keyPlayer1))
+            if (timer1.Enabled)
             {
-                GamePause();
-                if (MessageBox.Show("Правильно ответил?", "Отвечает игрок 1", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                    lblPoint1.Text = StringPlus1(lblPoint1.Text);
-                else lblPoint1.Text = StringMinus1(lblPoint1.Text);
-            }
-            else if (e.KeyCode.ToString().Equals(NameThatTune.keyPlayer2))
-            {
-                GamePause();
-                if (MessageBox.Show("Правильно ответил?", "Отвечает игрок 2", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                    lblPoint2.Text = StringPlus1(lblPoint2.Text);
-                else lblPoint2.Text = StringMinus1(lblPoint2.Text);
+                if (e.KeyData.ToString().Equals(NameThatTune.keyPlayer1))
+                {
+                    GamePause();
+                    fAnswer fA = new fAnswer();
+                    fA.lblPlayerAnswer.Text = "Отвечает игрок 1";
+                    if (fA.ShowDialog() == DialogResult.Yes)
+                        lblPoint1.Text = StringPlus1(lblPoint1.Text);
+                    else lblPoint1.Text = StringMinus1(lblPoint1.Text);
+                }
+                else if (e.KeyCode.ToString().Equals(NameThatTune.keyPlayer2))
+                {
+                    GamePause();
+                    fAnswer fA = new fAnswer();
+                    fA.lblPlayerAnswer.Text = "Отвечает игрок 2";
+                    if (fA.ShowDialog() == DialogResult.Yes)
+                        lblPoint2.Text = StringPlus1(lblPoint2.Text);
+                    else lblPoint2.Text = StringMinus1(lblPoint2.Text);
+                }
             }
         }
         private string StringPlus1(string s)
@@ -131,5 +137,14 @@ namespace NameThatTune
             MessageBox.Show("GameOver");
         }
 
+        private void WMP_OpenStateChange(object sender, AxWMPLib._WMPOCXEvents_OpenStateChangeEvent e)
+        {
+            if (WMP.openState == WMPLib.WMPOpenState.wmposMediaOpen)
+            {
+                if (!NameThatTune.randomStart)
+                    WMP.Ctlcontrols.currentPosition = random.Next(0, (int)WMP.currentMedia.duration / 2);
+
+            }
+        }
     }
 }
