@@ -22,7 +22,9 @@ namespace NameThatTune
         {
             NewTunePlay();
         }
+
         List<int> listTunePlayed = new List<int>(); //список песен, которые прозвучали во время игры.
+
         private void NewTunePlay()
         {
             progressBar1.Value = 0;
@@ -140,12 +142,15 @@ namespace NameThatTune
         private void GameOver()
         {
             HideForm(fA);
-            Thread.Sleep(100);     
             timerGame.Stop();
             timerTune.Stop();
             WMP.Ctlcontrols.stop();
-            MessageBox.Show("GameOver");
-            this.Close();
+            this.Hide();
+            int point1 = Convert.ToInt32(lblPoint1.Text);
+            int point2 = Convert.ToInt32(lblPoint2.Text);
+            if (point1 > point2) MessageBox.Show("Игра окончена!\nПобедил игрок номер 1");
+            else if (point2 > point1) MessageBox.Show("Игра окончена!\nПобедил игрок номер 2");
+            else MessageBox.Show("Игра окончена!\nПобедила дружба");
         }
 
         private void HideForm(Form formForClose)
