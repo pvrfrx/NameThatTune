@@ -60,11 +60,7 @@ namespace NameThatTune
             }
         }
 
-        private void GameOver()
-        {
-            MessageBox.Show("");
-        }
-
+       
         private void fGame_Shown(object sender, EventArgs e)
         {
 
@@ -101,7 +97,39 @@ namespace NameThatTune
 
         private void fGame_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyData.ToString().Equals(NameThatTune.keyPlayer1))
+            {
+                GamePause();
+                if (MessageBox.Show("Правильно ответил?", "Отвечает игрок 1", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    lblPoint1.Text = StringPlus1(lblPoint1.Text);
+                else lblPoint1.Text = StringMinus1(lblPoint1.Text);
+            }
+            else if (e.KeyCode.ToString().Equals(NameThatTune.keyPlayer2))
+            {
+                GamePause();
+                if (MessageBox.Show("Правильно ответил?", "Отвечает игрок 2", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    lblPoint2.Text = StringPlus1(lblPoint2.Text);
+                else lblPoint2.Text = StringMinus1(lblPoint2.Text);
+            }
         }
+        private string StringPlus1(string s)
+        {
+            return (Convert.ToInt32(s) + 1).ToString();
+        }
+        private string StringMinus1(string s)
+        {
+            return (Convert.ToInt32(s) - 1).ToString();
+        }
+        private void GamePause()
+        {
+            timer1.Stop();
+            WMP.Ctlcontrols.pause();
+        }
+
+        private void GameOver()
+        {
+            MessageBox.Show("GameOver");
+        }
+
     }
 }

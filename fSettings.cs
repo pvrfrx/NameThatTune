@@ -53,8 +53,8 @@ namespace NameThatTune
             NameThatTune.repeatTune = Convert.ToBoolean(cbRepeat.Checked);
             NameThatTune.allDirection = Convert.ToBoolean(cbAllFolder.Checked);
             NameThatTune.WriteSettings();
-            NameThatTune.keyPlayer1 = cbKeyPlayer1.Text;
-            NameThatTune.keyPlayer2 = cbKeyPlayer2.Text;
+            NameThatTune.keyPlayer1 = cbKeyPlayer1.Text.ToUpper();
+            NameThatTune.keyPlayer2 = cbKeyPlayer2.Text.ToUpper();
         }
         
         private void btnCancel_Click(object sender, EventArgs e)
