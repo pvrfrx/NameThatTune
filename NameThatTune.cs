@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Win32;
 using System.IO;
+using System.Windows.Forms;
 
 namespace NameThatTune
 {
@@ -22,12 +23,14 @@ namespace NameThatTune
 
         //настройки программы
         static public List<string> listMusic = new List<string>();
-        static public int gameDuration=0;// = 60;(int)ReadSettings(regGameDuration);
-        static public int tuneDuration=0;// = (int)ReadSettings(regTuneDuration);
-        static public bool randomStart=false; //= Convert.ToBoolean(ReadSettings(regRandomStart));
-        static public bool repeatTune= false; //= Convert.ToBoolean(ReadSettings(regRepeatTune));
-        static public bool allDirection= false;// = Convert.ToBoolean(ReadSettings(regAllDirection));
-        static public string lastPath= "";// = ReadSettings(regLastPath).ToString();
+        static public int gameDuration=0;
+        static public int tuneDuration=0;
+        static public bool randomStart=false;
+        static public bool repeatTune= false;
+        static public bool allDirection= false;
+        static public string lastPath= "";
+        static public string keyPlayer1 = "A";
+        static public string keyPlayer2 = "P";
 
 
         //получение параметров реестра, для записей значений в них

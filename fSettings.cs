@@ -53,8 +53,10 @@ namespace NameThatTune
             NameThatTune.repeatTune = Convert.ToBoolean(cbRepeat.Checked);
             NameThatTune.allDirection = Convert.ToBoolean(cbAllFolder.Checked);
             NameThatTune.WriteSettings();
+            NameThatTune.keyPlayer1 = cbKeyPlayer1.Text;
+            NameThatTune.keyPlayer2 = cbKeyPlayer2.Text;
         }
-
+        
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -76,6 +78,8 @@ namespace NameThatTune
                 cbAllFolder.Checked = NameThatTune.allDirection;
                 lbListMusic.Items.Clear();
                 lbListMusic.Items.AddRange(NameThatTune.listMusic.ToArray());
+                cbKeyPlayer1.Text = NameThatTune.keyPlayer1;
+                cbKeyPlayer2.Text = NameThatTune.keyPlayer2;
             }
             catch (NullReferenceException)
             {

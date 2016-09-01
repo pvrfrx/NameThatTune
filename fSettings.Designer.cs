@@ -41,6 +41,12 @@
             this.cbTuneDuration = new System.Windows.Forms.ComboBox();
             this.cbGameDuration = new System.Windows.Forms.ComboBox();
             this.cbRepeat = new System.Windows.Forms.CheckBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cbKeyPlayer1 = new System.Windows.Forms.ComboBox();
+            this.cbKeyPlayer2 = new System.Windows.Forms.ComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbListMusic
@@ -164,11 +170,59 @@
             this.cbRepeat.Text = "Повторять мелодии, если все прозвучали";
             this.cbRepeat.UseVisualStyleBackColor = true;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 27);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(112, 13);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Кнопка для игрока 1";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 55);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(112, 13);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Кнопка для игрока 2";
+            // 
+            // cbKeyPlayer1
+            // 
+            this.cbKeyPlayer1.FormattingEnabled = true;
+            this.cbKeyPlayer1.Location = new System.Drawing.Point(161, 25);
+            this.cbKeyPlayer1.Name = "cbKeyPlayer1";
+            this.cbKeyPlayer1.Size = new System.Drawing.Size(50, 21);
+            this.cbKeyPlayer1.TabIndex = 15;
+            // 
+            // cbKeyPlayer2
+            // 
+            this.cbKeyPlayer2.FormattingEnabled = true;
+            this.cbKeyPlayer2.Location = new System.Drawing.Point(161, 52);
+            this.cbKeyPlayer2.Name = "cbKeyPlayer2";
+            this.cbKeyPlayer2.Size = new System.Drawing.Size(50, 21);
+            this.cbKeyPlayer2.TabIndex = 16;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.cbKeyPlayer2);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.cbKeyPlayer1);
+            this.groupBox1.Location = new System.Drawing.Point(287, 414);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(217, 84);
+            this.groupBox1.TabIndex = 17;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Настройки клавиш для игроков";
+            // 
             // fSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cbRepeat);
             this.Controls.Add(this.cbGameDuration);
             this.Controls.Add(this.cbTuneDuration);
@@ -188,6 +242,8 @@
             this.Text = "Настройки";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fSettings_FormClosing);
             this.Shown += new System.EventHandler(this.fSettings_Shown);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -207,5 +263,10 @@
         private System.Windows.Forms.ComboBox cbTuneDuration;
         private System.Windows.Forms.ComboBox cbGameDuration;
         private System.Windows.Forms.CheckBox cbRepeat;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cbKeyPlayer1;
+        private System.Windows.Forms.ComboBox cbKeyPlayer2;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
