@@ -39,6 +39,12 @@ namespace NameThatTune
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            if (Convert.ToInt32(cbGameDuration.Text) <= 0 || Convert.ToInt32(cbTuneDuration.Text) <= 0
+                || Convert.ToInt32(cbTimeAnswer.Text) <= 0)
+            {
+                MessageBox.Show("Некорректные настройки времени");
+                return;
+            }
             this.DialogResult = DialogResult.OK;
             NameThatTune.listMusic.Clear();
             foreach (string item in lbListMusic.Items)  
@@ -52,9 +58,11 @@ namespace NameThatTune
             NameThatTune.randomStart = Convert.ToBoolean(cbRandomStart.Checked);
             NameThatTune.repeatTune = Convert.ToBoolean(cbRepeat.Checked);
             NameThatTune.allDirection = Convert.ToBoolean(cbAllFolder.Checked);
-            NameThatTune.WriteSettings();
             NameThatTune.keyPlayer1 = cbKeyPlayer1.Text.ToUpper();
             NameThatTune.keyPlayer2 = cbKeyPlayer2.Text.ToUpper();
+            NameThatTune.timeAnswer = Convert.ToInt32(cbTimeAnswer.Text);
+
+            NameThatTune.WriteSettings();
         }
         
         private void btnCancel_Click(object sender, EventArgs e)
@@ -80,6 +88,7 @@ namespace NameThatTune
                 lbListMusic.Items.AddRange(NameThatTune.listMusic.ToArray());
                 cbKeyPlayer1.Text = NameThatTune.keyPlayer1;
                 cbKeyPlayer2.Text = NameThatTune.keyPlayer2;
+                cbTimeAnswer.Text = NameThatTune.timeAnswer.ToString();
             }
             catch (NullReferenceException)
             {

@@ -38,8 +38,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblPoint1 = new System.Windows.Forms.Label();
             this.lblPoint2 = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timerTune = new System.Windows.Forms.Timer(this.components);
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.timerGame = new System.Windows.Forms.Timer(this.components);
+            this.lblGameDuration = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.WMP)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,7 +62,7 @@
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
             this.btnStart.TabIndex = 1;
-            this.btnStart.Text = "Старт";
+            this.btnStart.Text = "Следующая";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
@@ -120,10 +122,10 @@
             this.lblPoint2.TabIndex = 7;
             this.lblPoint2.Text = "0";
             // 
-            // timer1
+            // timerTune
             // 
-            this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timerTune.Interval = 1000;
+            this.timerTune.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // progressBar1
             // 
@@ -132,11 +134,25 @@
             this.progressBar1.Size = new System.Drawing.Size(382, 23);
             this.progressBar1.TabIndex = 8;
             // 
+            // timerGame
+            // 
+            this.timerGame.Interval = 1000;
+            this.timerGame.Tick += new System.EventHandler(this.timerGame_Tick);
+            // 
+            // lblGameDuration
+            // 
+            this.lblGameDuration.AutoSize = true;
+            this.lblGameDuration.Location = new System.Drawing.Point(174, 51);
+            this.lblGameDuration.Name = "lblGameDuration";
+            this.lblGameDuration.Size = new System.Drawing.Size(0, 13);
+            this.lblGameDuration.TabIndex = 9;
+            // 
             // fGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(406, 317);
+            this.Controls.Add(this.lblGameDuration);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.lblPoint2);
             this.Controls.Add(this.lblPoint1);
@@ -168,7 +184,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblPoint1;
         private System.Windows.Forms.Label lblPoint2;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timerTune;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Timer timerGame;
+        private System.Windows.Forms.Label lblGameDuration;
     }
 }

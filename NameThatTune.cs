@@ -18,6 +18,7 @@ namespace NameThatTune
         static string regRepeatTune = "Repeat Tune";
         static string regAllDirection = "All Direction";
         static string regLastPath = "Last Path";
+        static string regTimeAnswer = "Time Answer";
         //ветка реестра
         static string regKeyName = "Software\\PavelR\\NameThatTune";
 
@@ -25,6 +26,7 @@ namespace NameThatTune
         static public List<string> listMusic = new List<string>();
         static public int gameDuration=0;
         static public int tuneDuration=0;
+        static public int timeAnswer = 0;
         static public bool randomStart=false;
         static public bool repeatTune= false;
         static public bool allDirection= false;
@@ -40,6 +42,7 @@ namespace NameThatTune
         public static string GetRegRepeatTune() { return regRepeatTune; }
         public static string GetRegAllDirection() { return regAllDirection; }
         public static string GetRegLastPath() { return regLastPath; }
+        public static string GetTimeAnswer() { return regTimeAnswer; }
 
         public static void WriteSettings()
         {
@@ -51,6 +54,7 @@ namespace NameThatTune
                 Registry.CurrentUser.CreateSubKey(regKeyName).SetValue(regRepeatTune, repeatTune);
                 Registry.CurrentUser.CreateSubKey(regKeyName).SetValue(regAllDirection, allDirection);
                 Registry.CurrentUser.CreateSubKey(regKeyName).SetValue(regLastPath, lastPath);
+                Registry.CurrentUser.CreateSubKey(regKeyName).SetValue(regTimeAnswer, timeAnswer);
             }
             catch (Exception)
             {
@@ -68,9 +72,11 @@ namespace NameThatTune
                 repeatTune = Convert.ToBoolean(Registry.CurrentUser.OpenSubKey(regKeyName).GetValue(regRepeatTune));
                 allDirection = Convert.ToBoolean(Registry.CurrentUser.OpenSubKey(regKeyName).GetValue(regAllDirection));
                 lastPath = Registry.CurrentUser.OpenSubKey(regKeyName).GetValue(regLastPath).ToString();
+                timeAnswer= Convert.ToInt32(Registry.CurrentUser.OpenSubKey(regKeyName).GetValue(regTimeAnswer));
             }
             catch (Exception)
             {
+                return;
             }
         }    
     }

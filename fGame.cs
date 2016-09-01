@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace NameThatTune
 {
@@ -19,14 +20,14 @@ namespace NameThatTune
         Random random = new Random();
         private void btnStart_Click(object sender, EventArgs e)
         {
-            progressBar1.Value = 0;
-            progressBar1.Minimum = 0;
-            progressBar1.Maximum = NameThatTune.tuneDuration;
             NewTunePlay();
         }
         List<int> listTunePlayed = new List<int>(); //список песен, которые прозвучали во время игры.
         private void NewTunePlay()
         {
+            progressBar1.Value = 0;
+            progressBar1.Minimum = 0;
+            progressBar1.Maximum = NameThatTune.tuneDuration;
             int i = 0;
             while (true)
             {
@@ -36,7 +37,7 @@ namespace NameThatTune
                     listTunePlayed.Add(randomNumber);
                     WMP.URL = NameThatTune.listMusic[randomNumber];
                     WMP.Ctlcontrols.play();
-                    timer1.Start();
+                    timerTune.Start();
                     break;
                 }
                 else
@@ -58,11 +59,12 @@ namespace NameThatTune
                 }
             }
         }
-
        
         private void fGame_Shown(object sender, EventArgs e)
         {
-
+            lblGameDuration.Text = NameThatTune.gameDuration.ToString();
+            NewTunePlay();
+            timerGame.Start();
         }
 
         private void fGame_FormClosed(object sender, FormClosedEventArgs e)
@@ -72,49 +74,52 @@ namespace NameThatTune
         }
 
         private void timer1_Tick(object sender, EventArgs e)
-        { 
-            progressBar1.Value++;
-            progressBar1.Refresh();
-            this.Refresh();
-            if (progressBar1.Value>=progressBar1.Maximum)
+        {
+            if (progressBar1.Value >= progressBar1.Maximum)
             {
-                timer1.Stop();
+                timerTune.Stop();
+                NewTunePlay();
             }
+            else progressBar1.Value++;
         }
 
         private void btnPause_Click(object sender, EventArgs e)
         {
-            timer1.Stop();
+            timerTune.Stop();
             WMP.Ctlcontrols.pause();
         }
 
         private void btnResume_Click(object sender, EventArgs e)
         {
-            timer1.Start();
+            timerTune.Start();
             WMP.Ctlcontrols.play();
         }
-
+        fAnswer fA = new fAnswer();
         private void fGame_KeyDown(object sender, KeyEventArgs e)
         {
-            if (timer1.Enabled)
+            if (timerTune.Enabled)
             {
-                if (e.KeyData.ToString().Equals(NameThatTune.keyPlayer1))
+                try
                 {
-                    GamePause();
-                    fAnswer fA = new fAnswer();
-                    fA.lblPlayerAnswer.Text = "Отвечает игрок 1";
-                    if (fA.ShowDialog() == DialogResult.Yes)
-                        lblPoint1.Text = StringPlus1(lblPoint1.Text);
-                    else lblPoint1.Text = StringMinus1(lblPoint1.Text);
+                    if (e.KeyData.ToString().Equals(NameThatTune.keyPlayer1))
+                    {
+                        GamePause();
+                        fA.lblPlayerAnswer.Text = "Отвечает игрок 1";
+                        if (fA.ShowDialog() == DialogResult.Yes)
+                            lblPoint1.Text = StringPlus1(lblPoint1.Text);
+                        else lblPoint1.Text = StringMinus1(lblPoint1.Text);
+                    }
+                    else if (e.KeyCode.ToString().Equals(NameThatTune.keyPlayer2))
+                    {
+                        GamePause();
+                        fA.lblPlayerAnswer.Text = "Отвечает игрок 2";
+                        if (fA.ShowDialog() == DialogResult.Yes)
+                            lblPoint2.Text = StringPlus1(lblPoint2.Text);
+                        else lblPoint2.Text = StringMinus1(lblPoint2.Text);
+                    }
                 }
-                else if (e.KeyCode.ToString().Equals(NameThatTune.keyPlayer2))
+                catch (ObjectDisposedException)
                 {
-                    GamePause();
-                    fAnswer fA = new fAnswer();
-                    fA.lblPlayerAnswer.Text = "Отвечает игрок 2";
-                    if (fA.ShowDialog() == DialogResult.Yes)
-                        lblPoint2.Text = StringPlus1(lblPoint2.Text);
-                    else lblPoint2.Text = StringMinus1(lblPoint2.Text);
                 }
             }
         }
@@ -128,13 +133,31 @@ namespace NameThatTune
         }
         private void GamePause()
         {
-            timer1.Stop();
+            timerTune.Stop();
             WMP.Ctlcontrols.pause();
         }
 
         private void GameOver()
         {
+            HideForm(fA);
+            Thread.Sleep(100);     
+            timerGame.Stop();
+            timerTune.Stop();
+            WMP.Ctlcontrols.stop();
             MessageBox.Show("GameOver");
+            this.Close();
+        }
+
+        private void HideForm(Form formForClose)
+        {
+            foreach (Form item in Application.OpenForms)
+            {
+                if (item.Equals(formForClose))
+                {
+                    formForClose.Hide();
+                    return;
+                }
+            }
         }
 
         private void WMP_OpenStateChange(object sender, AxWMPLib._WMPOCXEvents_OpenStateChangeEvent e)
@@ -145,6 +168,15 @@ namespace NameThatTune
                     WMP.Ctlcontrols.currentPosition = random.Next(0, (int)WMP.currentMedia.duration / 2);
 
             }
+        }
+
+        private void timerGame_Tick(object sender, EventArgs e)
+        {
+            if (lblGameDuration.Text == "0")
+            {
+                GameOver();
+            }
+            else lblGameDuration.Text = StringMinus1(lblGameDuration.Text);
         }
     }
 }

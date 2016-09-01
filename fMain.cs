@@ -34,6 +34,10 @@ namespace NameThatTune
         private void btnPlay_Click(object sender, EventArgs e)
         {
             if (NameThatTune.listMusic.Count==0) MessageBox.Show("Не загружено ни одной песни");
+            if (NameThatTune.timeAnswer <= 0 || NameThatTune.gameDuration<=0 || NameThatTune.tuneDuration<=0)
+            {
+                MessageBox.Show("Не правильные настройки времени");
+            }
             else fg.ShowDialog();
         }
 

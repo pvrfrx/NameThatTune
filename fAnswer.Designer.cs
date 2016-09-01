@@ -28,16 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblPlayerAnswer = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // lblPlayerAnswer
             // 
             this.lblPlayerAnswer.AutoSize = true;
-            this.lblPlayerAnswer.Location = new System.Drawing.Point(13, 13);
+            this.lblPlayerAnswer.Location = new System.Drawing.Point(13, 9);
             this.lblPlayerAnswer.Name = "lblPlayerAnswer";
             this.lblPlayerAnswer.Size = new System.Drawing.Size(0, 13);
             this.lblPlayerAnswer.TabIndex = 0;
@@ -71,17 +74,31 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Игрок правильно ответил?";
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(16, 100);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(256, 23);
+            this.progressBar1.TabIndex = 4;
+            // 
             // fAnswer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lblPlayerAnswer);
             this.Name = "fAnswer";
             this.Text = "Ответ Игрока";
+            this.Load += new System.EventHandler(this.fAnswer_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -93,5 +110,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
