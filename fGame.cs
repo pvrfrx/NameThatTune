@@ -18,6 +18,7 @@ namespace NameThatTune
             InitializeComponent();
         }
         Random random = new Random();
+        bool[] playerAnswers = new bool[2] { false, false };
         private void btnStart_Click(object sender, EventArgs e)
         {
             NewTunePlay();
@@ -27,6 +28,8 @@ namespace NameThatTune
 
         private void NewTunePlay()
         {
+            playerAnswers[0] = false;
+            playerAnswers[1] = false;
             progressBar1.Value = 0;
             progressBar1.Minimum = 0;
             progressBar1.Maximum = NameThatTune.tuneDuration;
@@ -88,12 +91,14 @@ namespace NameThatTune
         private void btnPause_Click(object sender, EventArgs e)
         {
             timerTune.Stop();
+            timerGame.Stop();
             WMP.Ctlcontrols.pause();
         }
 
         private void btnResume_Click(object sender, EventArgs e)
         {
             timerTune.Start();
+            timerGame.Start();
             WMP.Ctlcontrols.play();
         }
         fAnswer fA = new fAnswer();
@@ -103,16 +108,18 @@ namespace NameThatTune
             {
                 try
                 {
-                    if (e.KeyData.ToString().Equals(NameThatTune.keyPlayer1))
+                    if (!playerAnswers[0] && e.KeyData.ToString().Equals(NameThatTune.keyPlayer1))
                     {
+                        playerAnswers[0] = true;
                         GamePause();
                         fA.lblPlayerAnswer.Text = "Отвечает игрок 1";
                         if (fA.ShowDialog() == DialogResult.Yes)
                             lblPoint1.Text = StringPlus1(lblPoint1.Text);
                         else lblPoint1.Text = StringMinus1(lblPoint1.Text);
                     }
-                    else if (e.KeyCode.ToString().Equals(NameThatTune.keyPlayer2))
+                    else if (!playerAnswers[1] && e.KeyCode.ToString().Equals(NameThatTune.keyPlayer2))
                     {
+                        playerAnswers[1] = true;
                         GamePause();
                         fA.lblPlayerAnswer.Text = "Отвечает игрок 2";
                         if (fA.ShowDialog() == DialogResult.Yes)
@@ -182,6 +189,12 @@ namespace NameThatTune
                 GameOver();
             }
             else lblGameDuration.Text = StringMinus1(lblGameDuration.Text);
+        }
+
+        private void lblPoint1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left) (sender as Label).Text=StringPlus1((sender as Label).Text);
+            else if (e.Button == MouseButtons.Right) (sender as Label).Text = StringMinus1((sender as Label).Text);
         }
     }
 }

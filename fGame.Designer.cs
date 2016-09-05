@@ -112,6 +112,7 @@
             this.lblPoint1.Size = new System.Drawing.Size(13, 13);
             this.lblPoint1.TabIndex = 6;
             this.lblPoint1.Text = "0";
+            this.lblPoint1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lblPoint1_MouseClick);
             // 
             // lblPoint2
             // 
@@ -121,6 +122,7 @@
             this.lblPoint2.Size = new System.Drawing.Size(13, 13);
             this.lblPoint2.TabIndex = 7;
             this.lblPoint2.Text = "0";
+            this.lblPoint2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lblPoint1_MouseClick);
             // 
             // timerTune
             // 
