@@ -35,5 +35,10 @@ namespace NameThatTune
             }
             else progressBar1.Value++;
         }
+
+        private void lblGetRightAnswer_Click(object sender, EventArgs e)
+        {
+            lblGetRightAnswer.Text = NameThatTune.tuneAnswer;
+        }
     }
 }

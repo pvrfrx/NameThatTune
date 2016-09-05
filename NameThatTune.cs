@@ -11,6 +11,8 @@ namespace NameThatTune
 {
     static class NameThatTune
     {
+        //переменная для хранения загаданной песни
+        static public string tuneAnswer = "";
         //параметры реестра для хранения настроек
         static string regGameDuration = "Game Duration";
         static string regTuneDuration = "Game Tune";
