@@ -80,6 +80,7 @@ namespace NameThatTune
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            if (playerAnswers[0]&&playerAnswers[1]) NewTunePlay();
             if (progressBar1.Value >= progressBar1.Maximum)
             {
                 timerTune.Stop();
@@ -114,9 +115,19 @@ namespace NameThatTune
                         TunePause();
                         fA.lblPlayerAnswer.Text = "Отвечает игрок 1";
                         if (fA.ShowDialog() == DialogResult.Yes)
+                        {
                             lblPoint1.Text = StringPlus1(lblPoint1.Text);
-                        else lblPoint1.Text = StringMinus1(lblPoint1.Text);
-                        TuneContinue();
+                            NewTunePlay();
+                        }
+                        else
+                        {
+                            if (playerAnswers[1]) NewTunePlay();
+                            else
+                            {
+                                lblPoint1.Text = StringMinus1(lblPoint1.Text);
+                                TuneContinue();
+                            }
+                        }
                     }
                     else if (!playerAnswers[1] && e.KeyCode.ToString().Equals(NameThatTune.keyPlayer2))
                     {
@@ -124,9 +135,19 @@ namespace NameThatTune
                         TunePause();
                         fA.lblPlayerAnswer.Text = "Отвечает игрок 2";
                         if (fA.ShowDialog() == DialogResult.Yes)
+                        {
                             lblPoint2.Text = StringPlus1(lblPoint2.Text);
-                        else lblPoint2.Text = StringMinus1(lblPoint2.Text);
-                        TuneContinue();
+                            NewTunePlay();
+                        }
+                        else 
+                        {
+                            if (playerAnswers[0]) NewTunePlay();
+                            else
+                            {
+                                lblPoint2.Text = StringMinus1(lblPoint2.Text);
+                                TuneContinue();
+                            }
+                        }
                     }
                 }
                 catch (ObjectDisposedException)
@@ -205,5 +226,8 @@ namespace NameThatTune
             if (e.Button == MouseButtons.Left) (sender as Label).Text=StringPlus1((sender as Label).Text);
             else if (e.Button == MouseButtons.Right) (sender as Label).Text = StringMinus1((sender as Label).Text);
         }
+
+
+
     }
 }
