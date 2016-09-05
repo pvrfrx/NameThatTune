@@ -111,20 +111,22 @@ namespace NameThatTune
                     if (!playerAnswers[0] && e.KeyData.ToString().Equals(NameThatTune.keyPlayer1))
                     {
                         playerAnswers[0] = true;
-                        GamePause();
+                        TunePause();
                         fA.lblPlayerAnswer.Text = "Отвечает игрок 1";
                         if (fA.ShowDialog() == DialogResult.Yes)
                             lblPoint1.Text = StringPlus1(lblPoint1.Text);
                         else lblPoint1.Text = StringMinus1(lblPoint1.Text);
+                        TuneContinue();
                     }
                     else if (!playerAnswers[1] && e.KeyCode.ToString().Equals(NameThatTune.keyPlayer2))
                     {
                         playerAnswers[1] = true;
-                        GamePause();
+                        TunePause();
                         fA.lblPlayerAnswer.Text = "Отвечает игрок 2";
                         if (fA.ShowDialog() == DialogResult.Yes)
                             lblPoint2.Text = StringPlus1(lblPoint2.Text);
                         else lblPoint2.Text = StringMinus1(lblPoint2.Text);
+                        TuneContinue();
                     }
                 }
                 catch (ObjectDisposedException)
@@ -132,6 +134,13 @@ namespace NameThatTune
                 }
             }
         }
+
+        private void TuneContinue()
+        {
+            timerTune.Start();
+            WMP.Ctlcontrols.play();
+        }
+
         private string StringPlus1(string s)
         {
             return (Convert.ToInt32(s) + 1).ToString();
@@ -140,7 +149,7 @@ namespace NameThatTune
         {
             return (Convert.ToInt32(s) - 1).ToString();
         }
-        private void GamePause()
+        private void TunePause()
         {
             timerTune.Stop();
             WMP.Ctlcontrols.pause();
