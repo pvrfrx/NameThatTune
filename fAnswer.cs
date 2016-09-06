@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using TagLib;
 namespace NameThatTune
 {
     public partial class fAnswer : Form
@@ -19,6 +19,7 @@ namespace NameThatTune
 
         private void fAnswer_Load(object sender, EventArgs e)
         {
+            lblGetRightAnswer.Text = "Посмотреть ответ";
             progressBar1.Maximum = NameThatTune.timeAnswer;
             progressBar1.Minimum = 0;
             progressBar1.Value = 0;
@@ -38,7 +39,8 @@ namespace NameThatTune
 
         private void lblGetRightAnswer_Click(object sender, EventArgs e)
         {
-            lblGetRightAnswer.Text = NameThatTune.tuneAnswer;
+            File mp3File = File.Create(NameThatTune.tuneAnswer);
+            lblGetRightAnswer.Text = mp3File.Tag.Performers[0] + " - " + mp3File.Tag.Title;
         }
     }
 }
