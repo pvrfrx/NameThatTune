@@ -42,5 +42,10 @@ namespace NameThatTune
             File mp3File = File.Create(NameThatTune.tuneAnswer);
             lblGetRightAnswer.Text = mp3File.Tag.Performers[0] + " - " + mp3File.Tag.Title;
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

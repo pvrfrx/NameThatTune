@@ -36,6 +36,7 @@
             // 
             // btnPlay
             // 
+            this.btnPlay.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnPlay.Location = new System.Drawing.Point(495, 155);
             this.btnPlay.Name = "btnPlay";
             this.btnPlay.Size = new System.Drawing.Size(250, 58);
@@ -46,7 +47,8 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(495, 320);
+            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnExit.Location = new System.Drawing.Point(495, 315);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(250, 58);
             this.btnExit.TabIndex = 1;
@@ -56,6 +58,7 @@
             // 
             // btnSettings
             // 
+            this.btnSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnSettings.Location = new System.Drawing.Point(495, 235);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(250, 58);

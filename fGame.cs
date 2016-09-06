@@ -227,5 +227,10 @@ namespace NameThatTune
             if (e.Button == MouseButtons.Left) (sender as Label).Text=StringPlus1((sender as Label).Text);
             else if (e.Button == MouseButtons.Right) (sender as Label).Text = StringMinus1((sender as Label).Text);
         }
+
+        private void btnGameOver_Click(object sender, EventArgs e)
+        {
+            GameOver();
+        }
     }
 }
